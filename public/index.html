@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brew & Blend Admin Dashboard</title> <!-- ==== Styles ====-->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body> <!-- Navigation Dashboard -->
+    <div class="container">
+        <div class="navigation">
+            <ul class="sidebar-list">
+                <li> <a href="#"> <span class="headericon"> <img src="assets/images/brewcafelogo.png" alt="brewcafelogo"
+                                width="100" height="auto"> </span> <span class="headertitle"></span> </a> </li>
+                <li> <a href="#" class="sidemenu-item" data-target="dashboard"> <span class="icon"> <ion-icon
+                                name="home"></ion-icon> </span> <span class="title">Dashboard</span> </a> </li>
+                <li> <a href="#" class="sidemenu-item" data-target="messages"> <span class="icon"> <ion-icon
+                                name="chatbox-ellipses"></ion-icon> </span> <span class="title">Messages</span> </a>
+                </li>
+                <li> <a href="#" class="sidemenu-item" data-target="orders"> <span class="icon"> <ion-icon
+                                name="reader"></ion-icon> </span> <span class="title">Orders</span> </a> </li>
+                <li> <a href="special-dashboard.html"> <span class="icon"> <ion-icon
+                                name="settings-outline"></ion-icon> </span> <span class="title">Special Dashboard</span> </a> </li>
+                <li> <a href="log in.html"> <span class="icon"> <ion-icon
+                                name="log-out-outline"></ion-icon> </span> <span class="title">Log out</span> </a> </li>
+            </ul>
+        </div>
+        
+        <!-- ================= Main ============== -->
+        <div class="main" id="dashboard" >
+            <div class="topbar">
+                <div class="toggle"> <ion-icon name="grid-outline"></ion-icon> </div>
+                <div class="search"> <label> <input type="text" placeholder="Search... "> <ion-icon
+                            name="search-circle-outline"></ion-icon> </label> </div>
+                <div class="user"> <ion-icon name="person-circle-outline"></ion-icon> </div>
+            </div> <!-- ================ Cards =============== -->
+            <div class="cardBox">
+                <div class="card">
+                    <div>
+                        <div class="numbers">1,504</div>
+                        <div class="cardName">Daily Views</div>
+                    </div>
+                    <div class="iconBox"> <ion-icon name="eye-outline"></ion-icon> </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="numbers">120</div>
+                        <div class="cardName">Sales</div>
+                    </div>
+                    <div class="iconBox"> <ion-icon name="stats-chart-outline"></ion-icon> </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="numbers">800</div>
+                        <div class="cardName">Comments</div>
+                    </div>
+                    <div class="iconBox"> <ion-icon name="chatbubbles-outline"></ion-icon> </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="numbers">PHP 9,000</div>
+                        <div class="cardName">Earnings</div>
+                    </div>
+                    <div class="iconBox"> <ion-icon name="cash-outline"></ion-icon> </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="numbers">PHP 800</div>
+                        <div class="cardName">Retraction</div>
+                    </div>
+                    <div class="iconBox"> <ion-icon name="sad-outline"></ion-icon> </div>
+                </div>
+            </div> <!-- ================= Adding Charts ================= -->
+            <div class="chartsBox">
+                <div class="chart"> <canvas id="chart-1"></canvas> </div>
+                <div class="chart"> <canvas id="chart-2" width="400" height="400"></canvas> </div>
+            </div> <!-- ================= Order Details List ================= -->
+            <div class="details">
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>Recent Orders</h2> <a href="" class="btn">View All</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td> Name </td>
+                                <td> Price </td>
+                                <td> Payment Method </td>
+                                <td> Order Status </td>
+                                <td> Payment Status </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> Chocolate Tiramisu </td>
+                                <td> 220.00 </td>
+                                <td> Cash on Delivery </td>
+                                <td> <span class="status delivered">Delivered</span> </td>
+                                <td> Paid </td>
+                            </tr>
+                            <tr>
+                                <td> Cinnamon & Honey Tea </td>
+                                <td> 120.00 </td>
+                                <td> VISA </td>
+                                <td> <span class="status intransit">In-Transit</span> </td>
+                                <td> Paid </td>
+                            </tr>
+                            <tr>
+                                <td> Red Velvet Milkshake </td>
+                                <td> 180.00 </td>
+                                <td> Gcash </td>
+                                <td> <span class="status delivered">Delivered</span> </td>
+                                <td> Paid </td>
+                            </tr>
+                            <tr>
+                                <td> Americano </td>
+                                <td> 120.00 </td>
+                                <td> VISA </td>
+                                <td> <span class="status returned">Returned</span> </td>
+                                <td> Refunded </td>
+                            </tr>
+                            <tr>
+                                <td> Mint Cookies & Cream Milkshake </td>
+                                <td> 160.00 </td>
+                                <td> VISA </td>
+                                <td> <span class="status intransit">In-Transit</span> </td>
+                                <td> Paid </td>
+                            </tr>
+                            <tr>
+                                <td> S'mores </td>
+                                <td> 150.00 </td>
+                                <td> Cash on Delivery </td>
+                                <td> <span class="status pending">Pending</span> </td>
+                                <td> Pending </td>
+                            </tr>
+                            <tr>
+                                <td> Chocolate Tiramisu </td>
+                                <td> 220.00 </td>
+                                <td> Cash on Delivery </td>
+                                <td> <span class="status delivered">Delivered</span> </td>
+                                <td> Paid </td>
+                            </tr>
+                            <tr>
+                                <td> Cinnamon & Honey Tea </td>
+                                <td> 120.00 </td>
+                                <td> VISA </td>
+                                <td> <span class="status intransit">In-Transit</span> </td>
+                                <td> Paid </td>
+                            </tr>
+                            <tr>
+                                <td> Red Velvet Milkshake </td>
+                                <td> 180.00 </td>
+                                <td> Gcash </td>
+                                <td> <span class="status delivered">Delivered</span> </td>
+                                <td> Paid </td>
+                            </tr>
+                            <tr>
+                                <td> Americano </td>
+                                <td> 120.00 </td>
+                                <td> VISA </td>
+                                <td> <span class="status returned">Returned</span> </td>
+                                <td> Paid </td>
+                            </tr>
+                            <tr>
+                                <td> Mint Cookies & Cream Milkshake </td>
+                                <td> 160.00 </td>
+                                <td> VISA </td>
+                                <td> <span class="status intransit">In-Transit</span> </td>
+                                <td> Paid </td>
+                            </tr>
+                            <tr>
+                                <td> S'mores </td>
+                                <td> 150.00 </td>
+                                <td> Cash on Delivery </td>
+                                <td> <span class="status pending">Pending</span> </td>
+                                <td> Pending </td>
+                            </tr>
+                            <tr>
+                                <td> S'mores </td>
+                                <td> 150.00 </td>
+                                <td> Cash on Delivery </td>
+                                <td> <span class="status pending">Pending</span> </td>
+                                <td> Pending </td>
+                            </tr>
+                            <tr>
+                                <td> S'mores </td>
+                                <td> 150.00 </td>
+                                <td> Cash on Delivery </td>
+                                <td> <span class="status pending">Pending</span> </td>
+                                <td> Pending </td>
+                            </tr>
+                            <tr>
+                                <td> S'mores </td>
+                                <td> 150.00 </td>
+                                <td> Cash on Delivery </td>
+                                <td> <span class="status pending">Pending</span> </td>
+                                <td> Pending </td>
+                            </tr>
+                            <tr>
+                                <td> Mint Cookies & Cream Milkshake </td>
+                                <td> 160.00 </td>
+                                <td> VISA </td>
+                                <td> <span class="status intransit">In-Transit</span> </td>
+                                <td> Paid </td>
+                            </tr>
+                            <tr>
+                                <td> Mint Cookies & Cream Milkshake </td>
+                                <td> 160.00 </td>
+                                <td> VISA </td>
+                                <td> <span class="status intransit">In-Transit</span> </td>
+                                <td> Paid </td>
+                            </tr>
+                            <tr>
+                                <td> Mint Cookies & Cream Milkshake </td>
+                                <td> 160.00 </td>
+                                <td> VISA </td>
+                                <td> <span class="status intransit">In-Transit</span> </td>
+                                <td> Paid </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> <!-- ===================== Recent Customers ====================== -->
+                <div class="recentCustomers">
+                    <div class="cardHeader">
+                        <h2>Recent Customers</h2>
+                    </div>
+                    <table>
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBox"> <ion-icon name="person-circle-outline"></ion-icon> </div>
+                            </td>
+                            <td>
+                                <h4>Basil <br> <span> Valdez </span> </h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBox"> <ion-icon name="person-circle-outline"></ion-icon> </div>
+                            </td>
+                            <td>
+                                <h4> Papa <br> <span> Jackson </span> </h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBox"> <ion-icon name="person-circle-outline"></ion-icon> </div>
+                            </td>
+                            <td>
+                                <h4>Mike <br> <span> Tyson </span> </h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBox"> <ion-icon name="person-circle-outline"></ion-icon> </div>
+                            </td>
+                            <td>
+                                <h4>Manny <br> <span> Pacquiao </span> </h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBox"> <ion-icon name="person-circle-outline"></ion-icon> </div>
+                            </td>
+                            <td>
+                                <h4>Runner <br> <span> Mayweather </span> </h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBox"> <ion-icon name="person-circle-outline"></ion-icon> </div>
+                            </td>
+                            <td>
+                                <h4>Ice Cream <br> <span> Yummy </span> </h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBox"> <ion-icon name="person-circle-outline"></ion-icon> </div>
+                            </td>
+                            <td>
+                                <h4>Bugoy <br> <span> Drilon </span> </h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBox"> <ion-icon name="person-circle-outline"></ion-icon> </div>
+                            </td>
+                            <td>
+                                <h4>Michael <br> <span> Pangilinan </span> </h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBox"> <ion-icon name="person-circle-outline"></ion-icon> </div>
+                            </td>
+                            <td>
+                                <h4>Michael <br> <span> Jordan </span> </h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBox"> <ion-icon name="person-circle-outline"></ion-icon> </div>
+                            </td>
+                            <td>
+                                <h4>Jordan <br> <span> Clarkson </span> </h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBox"> <ion-icon name="person-circle-outline"></ion-icon> </div>
+                            </td>
+                            <td>
+                                <h4>Maris <br> <span> Racal </span> </h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBox"> <ion-icon name="person-circle-outline"></ion-icon> </div>
+                            </td>
+                            <td>
+                                <h4>Anthony <br> <span> Jennings </span> </h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="60px">
+                                <div class="imgBox"> <ion-icon name="person-circle-outline"></ion-icon> </div>
+                            </td>
+                            <td>
+                                <h4>Coco <br> <span> Pachino </span> </h4>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        
+        
+        </div>
+    
+        <div class="main" id="messages">
+            <div class="customermessages">
+                <div class="messages-header">
+                    <h2>Brew & Blend Messenger</h2>
+                    <div class="search"> <label><input type="text" id="searchBar" class="search-bar" placeholder="Search for Customers"><ion-icon
+                        name="search-circle-outline"></ion-icon></label></div>
+                </div>
+            <div id="messageBoxOverlay" class="message-box-overlay">
+                <div id="messageBox" class="message-box">
+                    <h3 id="customerName"></h3>
+                    <p id="messageContent"></p>
+                    <button id="closeMessageBox">Close</button>
+                    <button id="replyButtonBox">Reply</button>
+                </div>
+            </div>
+                    <table id="messagesTable">
+                        <thead>
+                            <tr>
+                                <td> Customer Name </td>
+                                <td> Message </td>
+                                <td> Date </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-message="1">
+                                <td> Tonyo Takaw-Kain </td>
+                                <td> Boss Mag inquire lang ako kung tumatanggap kayo ng Gcash Payment Kasi nagtatry ako eh first time ko lang mag order sainyo sir, balita ko maganda bigayan </td>
+                                <td> January 3, 2025 </td>
+                            </tr>
+                            <tr data-message="2">
+                                <td> Inday Balut </td>
+                                <td> Boss may coffee kayo na available? </td>
+                                <td> January 3, 2025 </td>
+                            </tr>
+                            <tr data-message="3">
+                                <td> Boy Ulam </td>
+                                <td> Boss pabili ako ng martilyo </td>
+                                <td> January 3, 2025 </td>
+                            </tr>
+                            <tr data-message="4">
+                                <td> Karen Kare-Kare </td>
+                                <td> Boss merry christmas baka naman pamasko </td>
+                                <td> January 3, 2025 </td>
+                            </tr>
+                            <tr data-message="5">
+                                <td> Mang Taho </td>
+                                <td> Boss tumatanggap ba kayo ng discount para sa PWD (Person without Disability?) </td>
+                                <td> January 3, 2025 </td>
+                            </tr>
+                            <tr data-message="6">
+                                <td> Neneng Meryenda </td>
+                                <td> May kape ba kayo na parang superpower sa bote? Kailangan ko lang ng matinding boost ngayon. Salamat! </td>
+                                <td> January 3, 2025 </td>
+                            </tr>
+                            <tr data-message="7">
+                                <td> Berto Paksiw </td>
+                                <td> Gusto ko sana magtanong kung meron kayong kape na pampawala ng antok at bad vibes? Yung tipong superpower in a cup. Salamat! </td>
+                                <td> January 3, 2025 </td>
+                            </tr>
+                            <tr data-message="8">
+                                <td> Lala Chicharon </td>
+                                <td> Tanong ko lang kung may tinda kayong martilyo? Yung sobrang lakas, pampukpok sa antok. Kahit ilan, bibilhin ko! Salamat! 😂 </td>
+                                <td> January 3, 2025 </td>
+                            </tr>
+                            <tr data-message="9">
+                                <td> Carlo Puto </td>
+                                <td> Tanong ko lang po kung nagbebenta kayo ng pamaypay ng kabayo? Yung malaki at malakas, pampukpok sa antok. Para sa buong team namin! Salamat! 😂 </td>
+                                <td> January 3, 2025 </td>
+                            </tr>
+                            <tr data-message="10">
+                                <td> Junjun Lechon </td>
+                                <td> Tanong ko lang kung meron kayong bentang jetpack? Kailangan ko ng instant liftoff para mawala ang antok. Salamat, besties! 🚀☕😂 </td>
+                                <td> January 3, 2025 </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+        
+        </div>
+
+        <div class="content-section" id="orders" style="display: none">
+            <div class="orders-header">
+                <h2>Orders</h2>
+                <button id="refreshOrdersButton" class="btn">Refresh Orders</button>
+            </div>
+
+            <!-- Orders Table -->
+            <div class="scroll-container">
+                <div class="scroll-pane">
+                    <h2>Orders</h2>
+                    <table id="ordersTable">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Order Date</th>
+                                <th>Customer Name</th>
+                                <th>Ordered Items</th>
+                                <th>Quantity</th>
+                                <th>Total Price</th>
+                                <th>Order Source</th>
+                                <th>Order Status</th>
+                                <th>Payment Method</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Rows will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="scroll-pane">
+                    <h2>In-Transit</h2>
+                    <table id="inTransitTable">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Order Date</th>
+                                <th>Customer Name</th>
+                                <th>Ordered Items</th>
+                                <th>Quantity</th>
+                                <th>Total Price</th>
+                                <th>Order Source</th>
+                                <th>Order Status</th>
+                                <th>Payment Method</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Rows will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Cancelled Orders Table -->
+                <div class="scroll-pane">
+                    <h2>Cancelled Orders</h2>
+                    <table id="cancelledTable">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Order Date</th>
+                                <th>Customer Name</th>
+                                <th>Ordered Items</th>
+                                <th>Quantity</th>
+                                <th>Total Price</th>
+                                <th>Order Source</th>
+                                <th>Order Status</th>
+                                <th>Payment Method</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Rows will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Delivered Orders Table -->
+                <div class="scroll-pane">
+                    <h2>Delivered Orders</h2>
+                    <table id="deliveredTable">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Order Date</th>
+                                <th>Customer Name</th>
+                                <th>Ordered Items</th>
+                                <th>Quantity</th>
+                                <th>Total Price</th>
+                                <th>Order Source</th>
+                                <th>Order Status</th>
+                                <th>Payment Method</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Rows will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="orderModal" class="modal"> 
+            <div class="modal-content"> 
+                <span class="close">&times;</span> 
+                <h3>Order Details</h3> 
+                <form></form>
+                <p><strong>Order ID:</strong> <span id="modalOrderId"></span></p> 
+                <p><strong>Customer Name:</strong> <span id="modalCustomerName"></span></p> 
+                <p><strong>Item:</strong> <span id="modalItem"></span></p> 
+                <p><strong>Quantity:</strong> <input type="text" id="modalQuantity" class="modal-input"></p> 
+                <p><strong>Total Price:</strong> <input type="text" id="modalTotalPrice"></p> 
+                <p><strong>Order Status:</strong>
+                <select id="modalOrderStatus">
+                    <option value="delivered">Delivered</option>
+                    <option value="pending">Pending</option>
+                    <option value="in-progress">In-Progress</option>
+                </select>
+                </p> 
+                <button type="button" id="saveChangesButton" class="btn">Save Changes</button> 
+                <button type="button" id="cancelButton" class="btn">Cancel</button>
+            </div>
+    </div> 
+    
+    <!-- ========== Scripts ========== -->
+    <script src="assets/js/main.js"></script> 
+    <script src="assets/js/storelocator.js"></script>
+    
+    <!-- ============ Charts JS ============= -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script src="assets/js/chartsJS.js"></script> <!-- ion icons-->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

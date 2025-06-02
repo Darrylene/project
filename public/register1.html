@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brew & Blend Register</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      background-color: #f8f4ec;
+    }
+
+    form label {
+      color: #f8f4ec;
+    }
+
+    form input {
+      border: 2px solid #EAD8C0;
+      border-radius: 15px;
+    }
+
+    form input:focus {
+      outline: none;
+      border-color: #f8f4ec;
+      box-shadow: 0 0 10px #7c6246;
+    }
+
+    .bg-custom {
+      background-color: #8C785E;
+    }
+
+    .text-custom {
+      color: #f8f4ec;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* Full viewport height */
+      width: 100vw;  /* Full viewport width */
+    }
+
+    .row {
+      border-radius: 30px;
+      cursor: pointer;
+      width: 100%;
+      max-width: 1800px;
+      height: 90%;
+      max-height: 1800px;
+      margin: 0 auto;
+    }
+
+    .login-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50px;
+      padding: 30px;
+    }
+
+    .logo-title-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .login-title {
+      margin-top: 0;
+      color: white;
+    }
+
+    .forgot-password-link {
+      font-size: 1.1rem;
+      color: #f8f4ec;
+      margin-top: 8px;
+    }
+
+    .forgot-password-link:hover {
+      text-decoration: underline;
+    }
+
+    .login-form-container {
+      margin-top: 50px;
+    }
+    .custom-btn {
+      background-color: #EAD8C0;
+      color: #835f29f8;
+      border-radius: 15px;
+    }
+    .custom-btn:hover {
+      background-color: #d2c8a2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row shadow-lg rounded" style="background-color: #8C785E;">
+      <!-- Left Section: Registration Form -->
+      <div class="col-md-6 p-4 login-form-container">
+        <div class="login-container">
+          <div class="logo-title-wrapper">
+            <img src="b&blogo.png" alt="Brew & Blend Logo" class="logo">
+            <h2 class="login-title mb-0">Register</h2>
+          </div>
+        </div>
+        <form id="registerForm" method="POST" action="register.php">
+          <!-- First Name -->
+          <div class="mb-3">
+            <label for="firstName" class="form-label text-custom">First Name</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter your first name" required>
+            <div id="firstNameError" class="error"></div>
+          </div>
+          <!-- Last Name -->
+          <div class="mb-3">
+            <label for="lastName" class="form-label text-custom">Last Name</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter your last name" required>
+            <div id="lastNameError" class="error"></div>
+          </div>
+          <!-- Email -->
+          <div class="mb-3">
+            <label for="email" class="form-label text-custom">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+            <div id="emailError" class="error"></div>
+          </div>
+          <!-- Password -->
+          <div class="mb-3">
+            <label for="password" class="form-label text-custom">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter a password" required>
+            <div id="passwordError" class="error"></div>
+          </div>
+          <!-- Confirm Password -->
+          <div class="mb-3">
+            <label for="confirmPassword" class="form-label text-custom">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+            <div id="confirmPasswordError" class="error"></div>
+          </div>
+          <!-- Submit Button -->
+          <button type="submit" class="btn custom-btn w-100">Next</button>
+        </form>
+        <div class="text-center mt-3">
+          <p class="text-custom">Already have an account? <a href="log in.html" class="text-custom">Sign In</a></p>
+        </div>
+      </div>
+      <!-- Right Section: Image -->
+      <div class="col-md-6 image-container">
+        <img src="Screenshot_2024-12-17-15-20-39-79_40deb401b9ffe8e1df2f1cc5ba480b12 (1).jpg" class="d-block mx-auto" alt="Blueberry Belgian Waffles" style="width: 636px; height: 858px;">
+      </div>
+    </div>
+  </div>
+
+  <!-- Verification Code Modal -->
+  <div class="modal fade" id="verificationModal" tabindex="-1" aria-labelledby="verificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="verificationModalLabel">Email Verification</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="verificationForm">
+            <div class="mb-3">
+              <label for="verificationCode" class="form-label">Verification Code</label>
+              <input type="text" class="form-control" id="verificationCode" name="verificationCode" placeholder="Enter the verification code" required>
+            </div>
+            <button type="submit" class="btn custom-btn w-100">Verify</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Address and Contact Number Modal -->
+  <div class="modal fade" id="addressModal" tabindex="-1" aria-labelledby="addressModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addressModalLabel">Enter Address and Contact Number</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="addressForm">
+            <div class="mb-3">
+              <label for="address" class="form-label">Address</label>
+              <input type="text" class="form-control" id="address" name="address" placeholder="Enter your address" required>
+            </div>
+            <div class="mb-3">
+              <label for="contactNumber" class="form-label">Contact Number</label>
+              <input type="text" class="form-control" id="contactNumber" name="contactNumber" placeholder="Enter your contact number" required>
+            </div>
+            <button type="submit" class="btn custom-btn w-100">Confirm</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: 'POST',
+        url: 'register.php',
+        data: $('#registerForm').serialize(),
+        dataType: 'json',
+        success: function(response) {
+          if (response.status === 'success') {
+            // Show the verification modal
+            var verificationModal = new bootstrap.Modal(document.getElementById('verificationModal'));
+            verificationModal.show();
+          } else {
+            alert(response.message);
+          }
+        },
+        error: function(xhr, status, error) {
+          console.error('Error Details:', JSON.stringify({
+            status: status,
+            error: error,
+            responseText: xhr.responseText
+          }, null, 2)); // Pretty-print the JSON
+          alert('Failed to send verification email. Check the console for details.');
+        }
+      });
+    });
+
+    document.getElementById('verificationForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: 'POST',
+        url: 'verify.php',
+        data: $('#verificationForm').serialize(),
+        dataType: 'json',
+        success: function(response) {
+          if (response.status === 'success') {
+            // Hide the verification modal and show the address modal
+            var verificationModal = bootstrap.Modal.getInstance(document.getElementById('verificationModal'));
+            verificationModal.hide();
+            var addressModal = new bootstrap.Modal(document.getElementById('addressModal'));
+            addressModal.show();
+          } else {
+            alert(response.message);
+          }
+        },
+        error: function(xhr, status, error) {
+          console.error('Error Details:', JSON.stringify({
+            status: status,
+            error: error,
+            responseText: xhr.responseText
+          }, null, 2)); // Pretty-print the JSON
+          alert('Failed to verify code. Check the console for details.');
+        }
+      });
+    });
+
+    document.getElementById('addressForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      $.ajax({
+        type: 'POST',
+        url: 'complete_registration.php',
+        data: $('#addressForm').serialize(),
+        dataType: 'json',
+        success: function(response) {
+          if (response.status === 'success') {
+            alert('Registration completed successfully.');
+            window.location.href = 'log in.html';
+          } else {
+            alert(response.message);
+          }
+        },
+        error: function(xhr, status, error) {
+          console.error('Error Details:', JSON.stringify({
+            status: status,
+            error: error,
+            responseText: xhr.responseText
+          }, null, 2)); // Pretty-print the JSON
+          alert('Failed to complete registration. Check the console for details.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

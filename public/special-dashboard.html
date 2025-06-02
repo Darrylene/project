@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Dashboard</title>
+    <link rel="stylesheet" href="assets/css/special-dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            background-image: url('assets/images/bg-beans.png'); /* Ensure this path is correct */
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="navigation">
+            <ul class="sidebar-list">
+                <li class="logo"> 
+                    <span class="headericon"> 
+                        <img src="assets/images/brewcafelogo.png" alt="brewcafelogo" width="100" height="auto"> 
+                    </span> 
+                    <span class="headertitle">Special Dashboard</span> 
+                </li>
+                <li> <a href="index.html"> <span class="icon"> <ion-icon name="home"></ion-icon> </span> <span class="title">Home</span> </a> </li>
+                <li> <a href="#" class="sidemenu-item" data-target="user-management"> <span class="icon"> <ion-icon
+                                name="person"></ion-icon> </span> <span class="title">User Management</span> </a> </li>
+                <li> 
+                    <a href="#" class="sidemenu-item" id="inventoryManagementToggle"> 
+                        <span class="icon"> <ion-icon name="cube"></ion-icon> </span> 
+                        <span class="title">Inventory Management</span> 
+                        <span class="arrow">&gt;</span> <!-- Add arrow icon -->
+                    </a>
+                    <ul class="submenu" id="inventorySubmenu">
+                        <li><a href="#" class="submenu-item" data-target="products-table">Products Table</a></li>
+                        <li><a href="#" class="submenu-item" data-target="categories-table">Categories Table</a></li>
+                        <li><a href="#" class="submenu-item" data-target="stock-transactions-table">Stock Transactions Table</a></li>
+                        <li><a href="#" class="submenu-item" data-target="suppliers-table">Suppliers Table</a></li>
+                        <li><a href="#" class="submenu-item" data-target="menu-table">Menu Table</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="main" id="user-management">
+            <h2>User Management</h2>
+            <div class="user-management-content">
+                <button class="btn" id="addUserButton">Add New User</button>
+                <button class="btn" id="refreshButton">Refresh</button>
+                <div id="addUserForm" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h3>Add New User</h3>
+                        <form>
+                            <div class="form-group">
+                                <label for="newUserId">User ID:</label>
+                                <input type="text" id="newUserId" name="newUserId" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="newUserFirstName">First Name:</label>
+                                <input type="text" id="newUserFirstName" name="newUserFirstName">
+                            </div>
+                            <div class="form-group">
+                                <label for="newUserLastName">Last Name:</label>
+                                <input type="text" id="newUserLastName" name="newUserLastName">
+                            </div>
+                            <div class="form-group">
+                                <label for="newUserEmail">Email:</label>
+                                <input type="email" id="newUserEmail" name="newUserEmail">
+                            </div>
+                            <div class="form-group">
+                                <label for="newUserType">Type Of User:</label>
+                                <select id="newUserType" name="newUserType">
+                                    <option value="Customer">Customer</option>
+                                    <option value="Employee">Employee</option>
+                                    <option value="Rider">Rider</option>
+                                    <option value="Admin">Admin</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="newUserAddress">Address:</label>
+                                <input type="text" id="newUserAddress" name="newUserAddress">
+                            </div>
+                            <div class="form-group">
+                                <label for="newUserContact">Contact Number:</label>
+                                <input type="text" id="newUserContact" name="newUserContact">
+                            </div>
+                            <div class="form-group">
+                                <label for="newUserStatus">Account Status:</label>
+                                <select id="newUserStatus" name="newUserStatus">
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                    <option value="Banned">Banned</option>
+                                </select>
+                            </div>
+                            <div class="form-group buttons">
+                                <button type="button" id="saveNewUserButton" class="btn" disabled>Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table id="userTable">
+                        <thead>
+                            <tr>
+                                <th>User ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Type Of User</th>
+                                <th>Address</th>
+                                <th>Contact Number</th>
+                                <th>Account Status</th>
+                                <th>Password Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- User rows will be added dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="main" id="inventory-management">
+            <h2>Inventory Management</h2>
+            <div class="inventory-management-content">
+                <button class="btn" id="addItemButton">Add New Item</button>
+                <!-- Remove the table -->
+                <!-- <table id="inventoryTable">
+                    <thead>
+                        <tr>
+                            <th>Item ID</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Inventory rows will be added dynamically -->
+                    <!-- </tbody>
+                </table> -->
+            </div>
+        </div>
+
+        <div class="main" id="products-table">
+            <h2>Products Table</h2>
+            <button class="btn" id="addProductButton">Add New Product</button>
+            <button class="btn" id="refreshProductsButton">Refresh</button> <!-- Add refresh button -->
+            <div class="table-container">
+                <table id="productsTable">
+                    <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Product Name</th>
+                            <th>Category ID</th>
+                            <th>Price Per Unit</th>
+                            <th>Unit</th>
+                            <th>Stock Level</th>
+                            <th>Reorder Level</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Product rows will be added dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Add Product Modal -->
+        <div id="addProductForm" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>Add New Product</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="newProductId">Product ID:</label>
+                        <input type="text" id="newProductId" name="newProductId" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="newProductName">Product Name:</label>
+                        <input type="text" id="newProductName" name="newProductName">
+                    </div>
+                    <div class="form-group">
+                        <label for="newCategoryId">Category ID:</label>
+                        <select id="newCategoryId" name="newCategoryId">
+                            <!-- Options will be populated dynamically -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPricePerUnit">Price Per Unit:</label>
+                        <input type="text" id="newPricePerUnit" name="newPricePerUnit">
+                    </div>
+                    <div class="form-group">
+                        <label for="newUnit">Unit:</label>
+                        <input type="text" id="newUnit" name="newUnit">
+                    </div>
+                    <div class="form-group">
+                        <label for="newStockLevel">Stock Level:</label>
+                        <input type="text" id="newStockLevel" name="newStockLevel">
+                    </div>
+                    <div class="form-group">
+                        <label for="newReorderLevel">Reorder Level:</label>
+                        <input type="text" id="newReorderLevel" name="newReorderLevel">
+                    </div>
+                    <div class="form-group buttons">
+                        <button type="button" id="saveNewProductButton" class="btn" disabled>Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Edit Product Modal -->
+        <div id="editProductModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>Edit Product</h3>
+                <form id="editProductForm">
+                    <div class="form-group">
+                        <label for="editProductId">Product ID:</label>
+                        <input type="text" id="editProductId" name="editProductId" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="editProductName">Product Name:</label>
+                        <input type="text" id="editProductName" name="editProductName">
+                    </div>
+                    <div class="form-group">
+                        <label for="editCategoryId">Category ID:</label>
+                        <select id="editCategoryId" name="editCategoryId">
+                            <!-- Options will be populated dynamically -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editPricePerUnit">Price Per Unit:</label>
+                        <input type="text" id="editPricePerUnit" name="editPricePerUnit">
+                    </div>
+                    <div class="form-group">
+                        <label for="editUnit">Unit:</label>
+                        <input type="text" id="editUnit" name="editUnit">
+                    </div>
+                    <div class="form-group">
+                        <label for="editStockLevel">Stock Level:</label>
+                        <input type="text" id="editStockLevel" name="editStockLevel">
+                    </div>
+                    <div class="form-group">
+                        <label for="editReorderLevel">Reorder Level:</label>
+                        <input type="text" id="editReorderLevel" name="editReorderLevel">
+                    </div>
+                    <div class="form-group buttons">
+                        <button type="button" id="saveProductButton" class="btn" disabled>Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="main" id="categories-table">
+            <h2>Categories Table</h2>
+            <button class="btn" id="addCategoryButton">Add New Category</button>
+            <button class="btn" id="refreshCategoriesButton">Refresh</button>
+            <div class="table-container">
+                <table id="categoriesTable">
+                    <thead>
+                        <tr>
+                            <th>Category ID</th>
+                            <th>Category Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Category rows will be added dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Add Category Modal -->
+        <div id="addCategoryForm" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <h3>Add New Category</h3>
+              <form>
+                <div class="form-group">
+                    <label for="newCategoryIdTable">Category ID:</label>
+                    <input type="text" id="newCategoryIdTable" name="newCategoryIdTable" readonly>
+                  </div>
+                <div class="form-group">
+                  <label for="newCategoryName">Category Name:</label>
+                  <input type="text" id="newCategoryName" name="newCategoryName">
+                </div>
+                <div class="form-group buttons">
+                  <button type="button" id="saveNewCategoryButton" class="btn" disabled>Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        <!-- Edit Category Modal -->
+        <div id="editCategoryModal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <h3>Edit Category</h3>
+              <form id="editCategoryForm">
+                <div class="form-group">
+                  <label for="editCategoryId">Category ID:</label>
+                  <input type="text" id="editCategoryTable" name="editCategoryTable" readonly>
+                </div>
+                <div class="form-group">
+                  <label for="editCategoryName">Category Name:</label>
+                  <input type="text" id="editCategoryName" name="editCategoryName">
+                </div>
+                <div class="form-group buttons">
+                  <button type="button" id="saveCategoryButton" class="btn" disabled>Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        <div class="main" id="stock-transactions-table">
+            <h2>Stock Transactions Table</h2>
+            <!-- Content for Stock Transactions Table -->
+        </div>
+
+        <div class="main" id="suppliers-table">
+            <h2>Suppliers Table</h2>
+            <!-- Content for Suppliers Table -->
+        </div>
+
+        <div class="main" id="menu-table">
+            <h2>Menu Table</h2>
+            <button class="btn" id="addMenuItemButton">Add New Menu Item</button>
+            <button class="btn" id="refreshMenuButton">Refresh</button>
+            <div class="table-container">
+                <table id="menuTable">
+                    <thead>
+                        <tr>
+                            <th>Menu Item ID</th>
+                            <th>Menu Item Name</th>
+                            <th>Description</th>
+                            <th>Price</th>
+                            <th>Image</th>
+                            <th>Menu Category ID</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Menu rows will be added dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Add Menu Item Modal -->
+        <div id="addMenuItemForm" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>Add New Menu Item</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="newMenuItemId">Menu Item ID:</label>
+                        <input type="text" id="newMenuItemId" name="newMenuItemId" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="newMenuItemName">Menu Item Name:</label>
+                        <input type="text" id="newMenuItemName" name="newMenuItemName">
+                    </div>
+                    <div class="form-group">
+                        <label for="newDescription">Description:</label>
+                        <textarea id="newDescription" name="newDescription"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="newPrice">Price:</label>
+                        <input type="text" id="newPrice" name="newPrice">
+                    </div>
+                    <div class="form-group">
+                        <label for="newImageUrl">Image URL:</label>
+                        <input type="text" id="newImageUrl" name="newImageUrl">
+                    </div>
+                    <div class="form-group">
+                        <label for="newMenuCategoryId">Menu Category:</label>
+                        <select id="newMenuCategoryId" name="newMenuCategoryId">
+                            <option value="" disabled selected>Select a category</option>
+                            <!-- Options will be populated dynamically -->
+                        </select>
+                    </div>
+                    <div class="form-group buttons">
+                        <button type="button" id="saveNewMenuItemButton" class="btn" disabled>Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Edit Menu Item Modal -->
+        <div id="editMenuItemForm" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>Edit Menu Item</h3>
+                <form>
+                    <div class="form-group">
+                        <label for="editMenuItemId">Menu Item ID:</label>
+                        <input type="text" id="editMenuItemId" name="editMenuItemId" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="editMenuItemName">Menu Item Name:</label>
+                        <input type="text" id="editMenuItemName" name="editMenuItemName">
+                    </div>
+                    <div class="form-group">
+                        <label for="editDescription">Description:</label>
+                        <textarea id="editDescription" name="editDescription"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="editPrice">Price:</label>
+                        <input type="text" id="editPrice" name="editPrice">
+                    </div>
+                    <div class="form-group">
+                        <label for="editImageUrl">Image URL:</label>
+                        <input type="text" id="editImageUrl" name="editImageUrl">
+                    </div>
+                    <div class="form-group">
+                        <label for="editMenuCategoryId">Menu Category:</label>
+                        <select id="editMenuCategoryId" name="editMenuCategoryId">
+                            <option value="" disabled selected>Select a category</option>
+                            <!-- Options will be populated dynamically -->
+                        </select>
+                    </div>
+                    <div class="form-group buttons">
+                        <button type="button" id="saveMenuItemButton" class="btn" disabled>Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div id="editUserModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Edit User</h3>
+            <form id="editUserForm">
+                <div class="form-group">
+                    <label for="editUserId">User ID:</label>
+                    <input type="text" id="editUserId" name="editUserId" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="editUserFirstName">First Name:</label>
+                    <input type="text" id="editUserFirstName" name="editUserFirstName">
+                </div>
+                <div class="form-group">
+                    <label for="editUserLastName">Last Name:</label>
+                    <input type="text" id="editUserLastName" name="editUserLastName">
+                </div>
+                <div class="form-group">
+                    <label for="editUserEmail">Email:</label>
+                    <input type="email" id="editUserEmail" name="editUserEmail" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="editUserType">Type Of User:</label>
+                    <select id="editUserType" name="editUserType">
+                        <option value="Customer">Customer</option>
+                        <option value="Employee">Employee</option>
+                        <option value="Rider">Rider</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editUserAddress">Address:</label>
+                    <input type="text" id="editUserAddress" name="editUserAddress">
+                </div>
+                <div class="form-group">
+                    <label for="editUserContact">Contact Number:</label>
+                    <input type="text" id="editUserContact" name="editUserContact">
+                </div>
+                <div class="form-group">
+                    <label for="editUserStatus">Account Status:</label>
+                    <select id="editUserStatus" name="editUserStatus">
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                        <option value="Banned">Banned</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editPasswordStatus">Password Status:</label>
+                    <input type="text" id="editPasswordStatus" name="editPasswordStatus" readonly>
+                </div>
+                <div class="form-group buttons">
+                    <button type="button" id="saveUserButton" class="btn" disabled>Save</button>
+                    <button type="button" id="resetPasswordButton" class="btn">Reset Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <div id="coffeeLoadingScreen" class="coffee-loading-screen" style="display: none;">
+        <div class="coffee-mug">
+            <div class="coffee-mug-handle"></div>
+            <div class="coffee-mug-steam"></div>
+        </div>
+    </div>
+
+    <script src="assets/js/special-dashboard.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

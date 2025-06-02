@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinnamon & Honey Tea</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Agbalumo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Anaheim, sans-serif;
+            height: 100vh;
+            overflow: hidden; 
+        }
+        .header {
+            background-color: #8C785E;
+            color: #FFF2E1;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .section-1 {
+            background-color: #543310;
+            padding: 2rem;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            flex: 1;
+            overflow: hidden; 
+        }
+        .section-1 .product-image {
+            display: flex; /* Flexbox para madaling control */
+            justify-content: center;
+            flex: 1 1 300px;
+        }
+        .section-1 .product-info {
+            flex: 2 1 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 2rem;
+        }
+        .product-info h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            font-family: Agbalumo, sans-serif;
+        }
+        .section-1 .text-color {
+            color: #FFF2E1;
+        }
+        .quantity-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .quantity-container button {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            background-color: #FFF2E1;
+            border: 1px solid #FFF2E1;
+            color: #543310;
+        }
+        .quantity-container button:hover {
+            background-color: #543310;
+            color: #FFF2E1;
+        }
+        .price {
+            font-size: 1.5rem;
+            margin-left: 1rem;
+            font-family: Adamina, serif;
+            font-weight: 700;
+        }
+        .section-2 {
+            background-color: #FFF2E1;
+            padding: 2rem;
+            flex: 1;
+        }
+        .section-2 .text-color {
+            color: #543310;
+            margin-left: 20px;
+            font-family: Adamina, serif;
+            font-weight: 700;
+        }
+        .favorites-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .cart-summary {
+            position: relative;
+        }
+        .cart-summary .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: red;
+            color: #FFF2E1;
+            border-radius: 50%;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.8rem;
+            font-family: Anaheim, sans-serif;
+        }
+        .btn-back {
+            color: #FFF2E1;
+            font-size: 1.5rem; /* Adjust the font size */
+            padding: 0.5rem 1rem; /* Adjust the padding */
+            width: auto; /* Ensures the button width adjusts based on content */
+            height: auto; /* Ensures the button height adjusts based on content */
+            font-family: Anaheim, sans-serif;
+        }
+        .btn-cart-summary {
+            color: #FFF2E1;
+            background-color: #543310;
+            border: none;
+        }
+        .btn-favorites {
+            color: #e63946;
+            border-color: #e63946;
+        }
+        .btn-size {
+            color: #FFF2E1;
+            border-color: #FFF2E1;
+            background-color: transparent;
+        }
+        .btn-primary {
+            background-color: #8C785E;
+            border-color: #8C785E;
+            color: #FFF2E1;
+        }
+        .btn-size {
+            background: none;
+            border: none;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .btn-size .size-label {
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 5px;
+            color: #FFF2E1;
+        }
+
+        .btn-size .size-details {
+            font-size: 12px;
+            color: #FFF2E1;
+        }
+
+        .btn-size.active {
+            color: #a79277;
+        }
+
+        .btn-favorites {
+            background: #a79277;
+            border: 2px solid #a79277;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-favorites.active {
+            background: #a79277;
+            color: #fff;
+        }
+        /* Short */
+        .btn-small i.bi-cup-hot {
+            font-size: 20px;
+        }
+        .btn-small i.bi-cup-hot-fill {
+            font-size: 20px;
+        }
+
+        /* Tall */
+        .btn-tall i.bi-cup-hot {
+            font-size: 24px;
+        }
+        .btn-tall i.bi-cup-hot-fill {
+            font-size: 24px;
+        }
+        /* Grande */
+        .btn-grande i.bi-cup-hot {
+            font-size: 28px;
+        }
+        .btn-grande i.bi-cup-hot-fill {
+            font-size: 28px;
+        }
+
+        /* Venti */
+        .btn-venti i.bi-cup-hot {
+            font-size: 32px;
+        }
+        .btn-venti i.bi-cup-hot-fill {
+            font-size: 32px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="btn btn-back d-flex align-items-center me-auto" onclick="window.location.href='menu.html';">
+            <i class="bi bi-arrow-left"></i>
+        </button>
+        <div class="cart-summary">
+            <button class="btn btn-cart-summary" onclick="goToCart()">
+                <i class="bi bi-cart"></i>
+            </button>
+            <span class="cart-count" id="cartCount">0</span>
+        </div>
+    </div>
+
+    <div class="content">
+        <!-- First Section -->
+        <div class="section-1">
+            <div class="product-image">
+                <img src="cinnamon&honeytea.png" alt="Cinnamon & Honey Tea" style="height: 270px; width: 200px;">
+            </div>
+            <div class="product-info">
+                <h1 class="text-color">Cinnamon & Honey Tea</h1>
+                <div class="quantity-container">
+                    <button class="btn btn-outline-secondary" onclick="decreaseQuantity()">
+                        <i class="bi bi-dash"></i>
+                    </button>
+                    <span id="quantity" class="text-color">0</span>
+                    <button class="btn btn-outline-secondary" onclick="increaseQuantity()">
+                        <i class="bi bi-plus"></i>
+                    </button>
+                    <span class="price text-color">₱120.00</span>
+                </div>
+                <div class="mb-3">
+                    <h5 class="text-color">Size Options:</h5>
+                    <div class="favorites-container size-options">
+                        <div class="d-flex justify-content-center gap-4">
+                            <button class="btn btn-size btn-small" data-size="Short">
+                                <i class="bi bi-cup-hot"></i>
+                                <div class="size-label">Short</div>
+                                <small class="size-details">8 fl oz</small>
+                            </button>
+                            <button class="btn btn-size btn-tall" data-size="Tall">
+                                <i class="bi bi-cup-hot"></i>
+                                <div class="size-label">Tall</div>
+                                <small class="size-details">12 fl oz</small>
+                            </button>
+                            <button class="btn btn-size btn-grande" data-size="Grande">
+                                <i class="bi bi-cup-hot"></i>
+                                <div class="size-label">Grande</div>
+                                <small class="size-details">16 fl oz</small>
+                            </button>
+                            <button class="btn btn-size btn-venti" data-size="Venti">
+                                <i class="bi bi-cup-hot"></i>
+                                <div class="size-label">Venti</div>
+                                <small class="size-details">20 fl oz</small>
+                            </button>
+                        </div>
+                        <button class="btn btn-favorites">
+                            <i class="bi bi-heart"></i> Favorites
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Second Section -->
+        <div class="section-2">
+            <h5 class="text-color">A soothing blend of warm cinnamon and sweet honey, this tea offers comforting flavors with a touch of natural sweetness.</h5>
+            <br>
+            <br>
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-primary" id="addToCartButton">
+                    <h5>Add to Order</h5>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script> 
+        document.addEventListener("DOMContentLoaded", () => {
+          // Handle Size Options toggle
+          const sizeButtons = document.querySelectorAll(".btn-size");
+          sizeButtons.forEach(button => {
+              button.addEventListener("click", () => {
+                  // Remove active class and reset icons for all buttons
+                  sizeButtons.forEach(btn => {
+                      btn.classList.remove("active");
+                      const icon = btn.querySelector("i");
+                      icon.classList.remove("bi-cup-hot-fill");
+                      icon.classList.add("bi-cup-hot");
+                  });
+      
+                  // Add active class and toggle icon for the clicked button
+                  button.classList.add("active");
+                  const icon = button.querySelector("i");
+                  icon.classList.remove("bi-cup-hot");
+                  icon.classList.add("bi-cup-hot-fill");
+              });
+          });
+      
+          // Handle Favorites button toggle
+          const favoritesButton = document.querySelector(".btn-favorites");
+          favoritesButton.addEventListener("click", () => {
+              favoritesButton.classList.toggle("active");
+              const heartIcon = favoritesButton.querySelector("i");
+              if (favoritesButton.classList.contains("active")) {
+                  heartIcon.classList.remove("bi-heart");
+                  heartIcon.classList.add("bi-heart-fill");
+              } else {
+                  heartIcon.classList.remove("bi-heart-fill");
+                  heartIcon.classList.add("bi-heart");
+              }
+          });
+
+          // Load cart count from localStorage
+          const cartCount = document.getElementById('cartCount');
+          const cart = JSON.parse(localStorage.getItem('cart')) || [];
+          let totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+          cartCount.innerText = totalItems;
+      });
+      </script>
+    <script>
+        function decreaseQuantity() {
+            const quantitySpan = document.getElementById('quantity');
+            let quantity = parseInt(quantitySpan.innerText);
+            if (quantity > 0) {
+                quantity--;
+                quantitySpan.innerText = quantity;
+            }
+        }
+
+        function increaseQuantity() {
+            const quantitySpan = document.getElementById('quantity');
+            let quantity = parseInt(quantitySpan.innerText);
+            quantity++;
+            quantitySpan.innerText = quantity;
+        }
+
+        const addToCartButton = document.getElementById('addToCartButton');
+        const cartCount = document.getElementById('cartCount');
+        
+        addToCartButton.addEventListener('click', () => {
+            const quantitySpan = document.getElementById('quantity');
+            const quantity = parseInt(quantitySpan.innerText);
+            const productName = document.querySelector('.product-info h1').innerText;
+            const price = document.querySelector('.price').innerText;
+            const selectedSizeButton = document.querySelector(".btn-size.active");
+            const size = selectedSizeButton ? selectedSizeButton.dataset.size : "Short";
+            
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const item = {
+                name: productName,
+                size: size,
+                quantity: quantity,
+                price: price
+            };
+            cart.push(item);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            let currentCount = parseInt(cartCount.innerText);
+            currentCount += quantity;
+            cartCount.innerText = currentCount;
+        });
+
+        function goToCart() {
+            window.location.href = 'shoppingcart.html';
+        }
+    </script>
+</body>
+</html>

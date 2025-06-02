@@ -1,0 +1,815 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&display=swap');
+
+body {
+    font-family: "Agbalumo", system-ui;
+    background-color: var(--lightbrown);
+    background-image: url('/assets/images/bg-beans.png');
+}
+
+:root {
+    --darkbrown: #543310;
+    --lightbrown: #8C785E;
+    --CoffeeLight: #F4E6D4;
+    --CoffeeLight1: #AB947A;
+    --white: #fff;
+    --black: #000000;
+    --brownhover: #d1bb9e;
+}
+
+.container {
+    display: flex;
+}
+
+.navigation {
+    width: 300px;
+    background: var(--darkbrown);
+    height: 100vh;
+    padding: 20px;
+}
+
+.navigation ul {
+    list-style: none;
+    padding: 0;
+}
+
+.navigation ul li {
+    margin-bottom: 20px;
+}
+
+.navigation ul li.logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    pointer-events: none;
+    user-select: none;
+}
+
+.navigation ul li.logo .headericon {
+    margin-right: 10px;
+}
+
+.navigation ul li.logo .headertitle {
+    color: var(--CoffeeLight);
+    font-family: "Agbalumo", system-ui;
+    font-size: 1.5rem; /* Adjust font size to match the logo */
+}
+
+.navigation ul li a {
+    text-decoration: none;
+    color: var(--CoffeeLight);
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    font-family: "Agbalumo", system-ui;
+    font-size: 1.2rem; /* Adjust font size */
+}
+
+.navigation ul li a:hover {
+    background-color: var(--brownhover);
+}
+
+.navigation ul li a .icon {
+    margin-right: 10px;
+    font-size: 1.5rem; /* Adjust icon size */
+}
+
+.navigation ul li a .arrow {
+    margin-left: auto; /* Push the arrow to the right */
+    transition: transform 0.3s ease; /* Smooth transition for rotation */
+}
+
+.navigation ul li a .arrow.down {
+    transform: rotate(90deg); /* Rotate the arrow to point down */
+}
+
+.submenu {
+    display: block; /* Ensure submenu is block to allow max-height transition */
+    list-style: none;
+    padding-left: 20px;
+    overflow: hidden; /* Ensure smooth transition */
+    max-height: 0; /* Initially hide the submenu */
+    transition: max-height 0.3s ease-out; /* Smooth transition for expanding */
+}
+
+.submenu.expanded {
+    max-height: 500px; /* Adjust as needed to fit the submenu items */
+}
+
+.submenu-item {
+    display: none; /* Initially hide submenu items */
+    padding: 10px;
+    color: var(--CoffeeLight);
+    text-decoration: none;
+    transition: background-color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+    font-family: "Agbalumo", system-ui;
+    font-size: 1rem; /* Adjust font size */
+    opacity: 0;
+    transform: translateY(-10px);
+    background-color: #A98467; /* Medium Brown */
+}
+
+.submenu-item:hover {
+    background-color: var(--brownhover);
+    border-radius: 5px;
+}
+
+.submenu-item.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.main {
+    flex: 1;
+    padding: 20px;
+    display: none;
+    color: var(--CoffeeLight);
+    font-family: "Agbalumo", system-ui;
+}
+
+.main.active {
+    display: block;
+}
+
+#menu-table {
+    display: none;
+    padding: 20px;
+    color: var(--CoffeeLight);
+    font-family: "Agbalumo", system-ui;
+}
+
+#menu-table.active {
+    display: block;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: var(--darkbrown);
+    color: var(--CoffeeLight);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-family: "Agbalumo", system-ui;
+}
+
+.btn:hover {
+    background-color: var(--brownhover);
+}
+
+.btn:disabled,
+.btn:disabled:hover {
+    background-color: var(--lightbrown);
+    cursor: not-allowed;
+}
+
+/* Re-add styles related to the inventory table */
+.table-container {
+    max-height: 750px; /* Adjust the height as needed */
+    overflow-y: auto;
+    border: 1px solid var(--darkbrown); /* Add border to the container */
+    border-radius: 5px; /* Add border radius to the container */
+}
+
+/* Customize scroll pane */
+.table-container::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: var(--CoffeeLight); /* Background of the scrollbar track */
+    border-radius: 10px; /* Rounded corners for the track */
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background-color: var(--darkbrown); /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Rounded corners for the thumb */
+    border: 2px solid var(--CoffeeLight); /* Space around the thumb */
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background-color: var(--brownhover); /* Color of the scrollbar thumb on hover */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: "Agbalumo", system-ui;
+    text-align: center; 
+    border: 2px solid var(--darkbrown); 
+}
+
+table thead th {
+    background-color: var(--darkbrown);
+    color: var(--CoffeeLight);
+    padding: 10px; /* Reduce padding */
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    margin: 0; /* Remove margin */
+}
+
+table tbody td {
+    padding: 10px;
+    border-bottom: 1px solid var(--lightbrown);
+}
+
+table tbody tr:hover {
+    background-color: var(--brownhover);
+    color: var(--white);
+}
+
+table tbody td .btn {
+    margin: 5px 0; 
+}
+
+/* Modal Popup */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: var(--CoffeeLight);
+    margin: auto;
+    max-width: 500px;
+    padding-right: 10px;
+    border: 1px solid var(--darkbrown);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-content form {
+    display: grid;
+    grid-template-columns: auto 1fr; /* Adjust columns for labels and inputs */
+    gap: 10px; /* Add gap between columns */
+    align-items: center; /* Align items vertically */
+}
+
+.modal-content .form-group {
+    display: contents; /* Use contents to make the form more compact */
+}
+
+.modal-content label,
+.modal-content input,
+.modal-content select,
+.modal-content button {
+    margin-bottom: 5px; /* Reduce margin to make the form more compact */
+}
+
+.modal-content input,
+.modal-content select
+{
+    padding-right: 8px;
+    margin-right: 0; /* Remove margin */
+}
+.modal-content button {
+    width: 85%;
+}
+
+.modal-content input,
+.modal-content select {
+    width: 75%; /* Adjust width to make them wider */
+    padding: 8px;
+    margin: 0; /* Remove margin */
+}
+
+.modal-content button {
+    grid-column: span 2; /* Span button across both columns */
+    margin-top: 10px; /* Add margin to buttons */
+}
+
+.modal-content label {
+    display: block;
+    margin-top: 5px; /* Reduce top margin */
+    color: var(--darkbrown);
+    margin-bottom: 0; /* Remove bottom margin */
+    text-align: right; /* Align text to the right */
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 5px; /* Reduce padding */
+    margin-top: 5px;
+    border: 1px solid var(--darkbrown);
+    border-radius: 5px;
+}
+
+.close {
+    color: var(--darkbrown);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+close:hover,
+.close:focus {
+    color: var(--brownhover);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.input-error {
+    border: 2px solid red;
+}
+
+select {
+    width: 70%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--darkbrown);
+    border-radius: 5px;
+    background-color: var(--CoffeeLight);
+    color: var(--darkbrown);
+    font-family: "Agbalumo", system-ui;
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--brownhover);
+}
+
+#addUserForm {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+#addUserForm .modal-content {
+    background-color: var(--CoffeeLight);
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid var(--darkbrown);
+    width: 40%; /* Reduce width to make the form more compact */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+#addUserForm .close {
+    color: var(--darkbrown);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#addUserForm .close:hover,
+#addUserForm .close:focus {
+    color: var(--brownhover);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#addUserForm label {
+    display: block;
+    margin-top: 10px;
+    color: var (--darkbrown);
+}
+
+#addUserForm input {
+    width: 70%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--darkbrown);
+    border-radius: 5px;
+}
+
+#editUserModal .modal-content {
+    background-color: var(--CoffeeLight);
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid var(--darkbrown);
+    width: 40%; /* Reduce width to make the form more compact */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+#editUserModal input,
+#editUserModal select {
+    width: 70%; /* Reduce width of input fields */
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--darkbrown);
+    border-radius: 5px;
+}
+
+#editUserModal .modal-content {
+    background-color: var(--CoffeeLight);
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid var(--darkbrown);
+    width: 40%; /* Reduce width to make the form more compact */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+#addProductForm, #editProductModal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+#addProductForm .modal-content, #editProductModal .modal-content {
+    background-color: var(--CoffeeLight);
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid var(--darkbrown);
+    width: 40%; /* Reduce width to make the form more compact */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+#editProductModal form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align the form elements to the left */
+}
+
+#editProductModal .form-group {
+    width: 100%; /* Ensure form-group takes full width */
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center; /* Align items vertically */
+    margin-bottom: 10px; /* Add margin between form groups */
+}
+
+#editProductModal label {
+    width: 30%; /* Set a fixed width for labels */
+    text-align: left; /* Align text to the left */
+    margin-right: 10px; /* Add space between label and input */
+}
+
+#editProductModal input,
+#editProductModal select {
+    width: 60% !important; /* Further reduce width of input fields and ensure no conflicts */
+    max-width: 300px; /* Set a maximum width */
+    padding: 10px;
+    border: 1px solid var(--darkbrown);
+    border-radius: 5px;
+}
+
+#editProductModal .btn {
+    width: auto; /* Adjust width of the save button */
+}
+
+#addProductForm .close, #editProductModal .close {
+    color: var(--darkbrown);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#addProductForm .close:hover, #editProductModal .close:hover,
+#addProductForm .close:focus, #editProductModal .close:focus {
+    color: var(--brownhover);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#addProductForm label, #editProductModal label {
+    display: block;
+    margin-top: 10px;
+    color: var(--darkbrown);
+}
+
+#addProductForm input, #editProductModal input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--darkbrown);
+    border-radius: 5px;
+}
+
+#addProductForm input,
+#addProductForm select {
+    width: 70%; /* Reduce width of input fields */
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--darkbrown);
+    border-radius: 5px;
+}
+
+#editProductModal input,
+#editProductModal select {
+    width: 50% !important; /* Further reduce width of input fields and ensure no conflicts */
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--darkbrown);
+    border-radius: 5px;
+}
+
+#editProductModal .form-group {
+    display: flex;
+    justify-content: center; /* Center the save button */
+    width: 100%;
+}
+
+#editProductModal .btn {
+    width: auto; /* Adjust width of the save button */
+}
+
+#editProductModal .btn {
+    justify-content: center; /* Adjust width of the save button */
+}
+
+#editProductModal .modal-content,
+#addProductForm .modal-content,
+#addUserForm .modal-content,
+#editUserModal .modal-content {
+    background-color: var(--CoffeeLight);
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid var(--darkbrown);
+    width: 40%; /* Reduce width to make the form more compact */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+#editProductModal form,
+#addProductForm form,
+#addUserForm form,
+#editUserModal form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align the form elements to the left */
+}
+
+#editProductModal .form-group,
+#addProductForm .form-group,
+#addUserForm .form-group,
+#editUserModal .form-group {
+    width: 100%; /* Ensure form-group takes full width */
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center; /* Align items vertically */
+    margin-bottom: 10px; /* Add margin between form groups */
+}
+
+#editProductModal label,
+#addProductForm label,
+#addUserForm label,
+#editUserModal label {
+    width: 30%; /* Set a fixed width for labels */
+    text-align: left; /* Align text to the left */
+    margin-right: 10px; /* Add space between label and input */
+}
+
+#editProductModal input,
+#editProductModal select,
+#addProductForm input,
+#addProductForm select,
+#addUserForm input,
+#addUserForm select,
+#editUserModal input,
+#editUserModal select {
+    width: 60% !important; /* Further reduce width of input fields and ensure no conflicts */
+    max-width: 300px; /* Set a maximum width */
+    padding: 10px;
+    border: 1px solid var(--darkbrown);
+    border-radius: 5px;
+}
+
+#editProductModal .btn,
+#addProductForm .btn,
+#addUserForm .btn,
+#editUserModal .btn {
+    width: 100px; /* Adjust width of the save button */
+    white-space: nowrap; /* Ensure text does not wrap */
+}
+
+#editUserModal .form-group.buttons .btn {
+    width: 120px; /* Adjust width of the reset password button */
+    text-align: center; /* Center the text inside the button */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#editUserModal .form-group.buttons,
+#addUserForm .form-group.buttons,
+#addProductForm .form-group.buttons,
+#editProductModal .form-group.buttons {
+    justify-content: center; /* Center the buttons */
+}
+
+#editUserModal .form-group.buttons .btn,
+#addUserForm .form-group.buttons .btn,
+#addProductForm .form-group.buttons .btn,
+#editProductModal .form-group.buttons .btn {
+    margin: 0 5px; /* Add space between buttons */
+}
+
+#addUserForm .modal-content h3,
+#editUserModal .modal-content h3,
+#addProductForm .modal-content h3,
+#editProductModal .modal-content h3 {
+    color: var(--darkbrown); /* Change font color */
+}
+
+.loading-spinner {
+    position: fixed;
+    z-index: 1001;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.spinner {
+    border: 8px solid var(--CoffeeLight);
+    border-top: 8px solid var(--darkbrown);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.coffee-loading-screen {
+    position: fixed;
+    z-index: 1001;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.coffee-mug {
+    position: relative;
+    width: 80px;
+    height: 100px;
+    background-color: var(--darkbrown);
+    border-radius: 0 0 40px 40px;
+    overflow: hidden;
+    animation: bounce 2s infinite;
+}
+
+.coffee-mug-handle {
+    position: absolute;
+    right: -30px;
+    top: 20px;
+    width: 30px;
+    height: 60px;
+    border: 5px solid var(--darkbrown);
+    border-radius: 50%;
+}
+
+.coffee-mug-steam {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    width: 10px;
+    height: 40px;
+    background-color: var(--CoffeeLight);
+    border-radius: 50%;
+    animation: steam 1s infinite;
+}
+
+@keyframes steam {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+#addCategoryForm, #editCategoryModal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+
+#addCategoryForm .modal-content, #editCategoryModal .modal-content {
+    background-color: var(--CoffeeLight);
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid var(--darkbrown);
+    width: 40%; /* Reduce width to make the form more compact */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+#addCategoryForm .close, #editCategoryModal .close {
+    color: var(--darkbrown);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#addCategoryForm .close:hover, #editCategoryModal .close:hover,
+#addCategoryForm .close:focus, #editCategoryModal .close:focus {
+    color: var(--brownhover);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#addCategoryForm label, #editCategoryModal label {
+    display: block;
+    margin-top: 10px;
+    color: var(--darkbrown);
+}
+
+#addCategoryForm input, #editCategoryModal input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid var(--darkbrown);
+    border-radius: 5px;
+}
+
+#addMenuItemForm .modal-content h3 {
+    color: #543310; /* Set heading color */
+    text-align: center; /* Center align the heading */
+    margin-bottom: 20px; /* Add spacing below the heading */
+}
+
+#addMenuItemForm .modal-content form {
+    display: grid;
+    grid-template-columns: auto 1fr; /* Two-column layout for labels and inputs */
+    gap: 15px; /* Add spacing between form elements */
+    align-items: center; /* Align items vertically */
+}
+
+#addMenuItemForm .modal-content .form-group {
+    display: contents; /* Ensure compact layout */
+}
+
+#addMenuItemForm .modal-content label {
+    text-align: right; /* Align labels to the right */
+    margin-right: 10px; /* Add spacing between label and input */
+    color: var(--darkbrown); /* Ensure consistent label color */
+}
+
+#addMenuItemForm .modal-content input,
+#addMenuItemForm .modal-content textarea,
+#addMenuItemForm .modal-content select {
+    width: 90%; /* Adjust input width */
+    padding: 8px; /* Add padding for better usability */
+    border: 1px solid var(--darkbrown); /* Add border */
+    border-radius: 5px; /* Add rounded corners */
+}
+
+#addMenuItemForm .modal-content button {
+    grid-column: span 2; /* Span button across both columns */
+    margin-top: 15px; /* Add spacing above the button */
+    width: 50%; /* Adjust button width */
+    align-self: center; /* Center align the button */
+}

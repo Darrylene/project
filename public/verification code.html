@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brew & Blend Register</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      background-color: #f8f4ec;
+    }
+
+    form label {
+      color: #f8f4ec;
+    }
+
+    form input {
+      border: 2px solid #EAD8C0;
+      border-radius: 15px;
+    }
+
+    form input:focus {
+      outline: none;
+      border-color: #f8f4ec;
+      box-shadow: 0 0 10px #7c6246;
+    }
+
+    .bg-custom {
+      background-color: #8C785E;
+    }
+
+    .text-custom {
+      color: #f8f4ec;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* Full viewport height */
+      width: 100vw;  /* Full viewport width */
+    }
+
+    .row {
+      border-radius: 30px;
+      cursor: pointer;
+      width: 100%;
+      max-width: 1800px;
+      height: 90%;
+      max-height: 1800px;
+      margin: 0 auto;
+    }
+
+    .login-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50px;
+      padding: 30px;
+    }
+
+    .logo-title-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .login-title {
+      margin-top: 0;
+      color: white;
+    }
+
+    .forgot-password-link {
+      font-size: 1.1rem;
+      color: #f8f4ec;
+      margin-top: 8px;
+    }
+
+    .forgot-password-link:hover {
+      text-decoration: underline;
+    }
+
+    .login-form-container {
+      margin-top: 50px;
+    }
+    .custom-btn {
+      background-color: #EAD8C0;
+      color: #835f29f8;
+      border-radius: 15px;
+    }
+    .custom-btn:hover {
+      background-color: #d2c8a2;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row shadow-lg rounded" style="background-color: #8C785E;">
+      <!-- Left Section: Registration Form -->
+      <div class="col-md-6 p-4 login-form-container">
+        <div class="login-container">
+          <div class="logo-title-wrapper">
+            <img src="b&blogo.png" alt="Brew & Blend Logo" class="logo">
+            <h2 class="login-title mb-0">Verification Code</h2>
+          </div>
+        </div>
+        <form id="verifyCodeForm" method="POST" action="verifycode.php">
+          <p class="text-center mb-4 text-white">
+            You’re almost there!<br>
+            We've sent a six-digit code to your email.<br>
+            If it's not there, you may check your spam/junk folder.
+          </p>
+          <!-- Hidden Email Input -->
+          <?php
+          session_start();
+          if (isset($_SESSION['email'])): ?>
+            <input type="hidden" name="email" value="<?php echo htmlspecialchars($_SESSION['email']); ?>">
+          <?php endif; ?>
+          <!-- Code Input -->
+          <div class="mb-3">
+            <label for="code" class="form-label text-custom">Enter Code</label>
+            <input type="text" class="form-control" id="code" name="otp" placeholder="Enter your code" required>
+            <div id="codeError" class="error"></div>
+          </div>
+          <!-- Confirm Button -->
+          <button type="submit" class="btn custom-btn w-100 mt-3" id="confirmButton">Confirm</button>
+        </form>
+        <!-- Resend Code Form -->
+        <form id="resendCodeForm" method="POST" action="resendcode.php">
+          <input type="hidden" name="email" value="<?php echo htmlspecialchars($_SESSION['email']); ?>">
+          <button type="submit" class="btn custom-btn w-100 mt-3" id="resendCodeButton">Resend Code</button>
+        </form>
+        <div class="text-center mt-3">
+          <p class="text-custom">Return back to <a href="log in.html" class="text-custom">Sign In</a></p>
+        </div>
+      </div>
+
+      <!-- Right Section: Image -->
+      <div class="col-md-6 image-container">
+        <img src="verify.png" class="d-block mx-auto" alt="Blueberry Belgian Waffles" style="width: 670px; height: 905px;">
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById("verifyCodeForm").addEventListener("submit", function (e) {
+      const codeInput = document.getElementById("code").value.trim();
+      const codeError = document.getElementById("codeError");
+
+      if (codeInput === "") {
+        e.preventDefault();
+        codeError.textContent = "Please enter the verification code.";
+      } else if (codeInput.length !== 6 || isNaN(codeInput)) {
+        e.preventDefault();
+        codeError.textContent = "Invalid code! Please enter a 6-digit numeric code.";
+      } else {
+        codeError.textContent = "";
+      }
+    });
+
+    document.getElementById("loginPage").addEventListener("click", function (e) {
+      window.location.href = "log in.html";
+    });
+  </script>
+</body>
+</html>

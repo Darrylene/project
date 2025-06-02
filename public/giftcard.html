@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gift Card Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #8C785E;
+            color: #FFF2E1;
+        }
+        .card {
+            background-color: #543310;
+            color: #FFF2E1;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .card.expanded {
+            transform: scale(1.1);
+            z-index: 1;
+            position: relative;
+        }
+        .hidden {
+            display: none;
+        }
+        .btn-primary {
+            background-color: #D1BB9E;
+            border-color: #D1BB9E;
+            color: #543310;
+        }
+        .btn-primary:hover {
+            background-color: #BCA687;
+            border-color: #BCA687;
+        }
+        .btn-success {
+            background-color: #D1BB9E;
+            border-color: #D1BB9E;
+            color: #543310;
+        }
+        .btn-success:hover {
+            background-color: #BCA687;
+            border-color: #BCA687;
+        }
+        .back-btn {
+            color: #FFF2E1;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+/* Modal Background Color */
+.modal-content {
+    background-color: #543310;
+    color: #fff; /* Optional: Adjust text color for contrast */
+}
+
+/* Input Field Styling */
+.modal-body .form-control {
+    background-color: #fff; /* Keeps input fields white */
+    color: #000; /* Black text for better readability */
+    border: 1px solid #543310;
+}
+
+/* Button Styling */
+.modal-body .btn-success {
+    background-color: #865b41; /* Slightly lighter shade for buttons */
+    border-color: #865b41;
+}
+
+.modal-body .btn-success:hover {
+    background-color: #6a422c; /* Darker shade for hover effect */
+    border-color: #6a422c;
+}
+
+/* Close Button Styling */
+.btn-close {
+    filter: invert(100%); /* Makes the close button white for visibility */
+}  
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <a href="#" class="back-btn mb-4 d-inline-block"><i class="bi bi-arrow-left"></i></a>
+        <h1 class="text-center mb-5">Gift Cards</h1>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card" id="card-refer">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Refer a Friend</h5>
+                        <p class="card-text hidden">Refer a friend and get a special reward!</p>
+                        <button class="btn btn-primary hidden purchase-btn" data-card="refer">Purchase</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card" id="card-birthday">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Birthday</h5>
+                        <p class="card-text hidden">Celebrate birthdays with a unique gift!</p>
+                        <button class="btn btn-primary hidden purchase-btn" data-card="birthday">Purchase</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card" id="card-50off">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">50% Off</h5>
+                        <p class="card-text hidden">Get a 50% discount on your next purchase!</p>
+                        <button class="btn btn-primary hidden purchase-btn" data-card="50off">Purchase</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Purchase Modal -->
+    <div class="modal fade" id="purchaseModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Purchase Gift Card</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="purchaseForm">
+                        <div class="mb-3">
+                            <label for="recipientName" class="form-label">Recipient's Name</label>
+                            <input type="text" class="form-control" id="recipientName" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', function () {
+                const alreadyExpanded = this.classList.contains('expanded');
+                document.querySelectorAll('.card').forEach(c => c.classList.remove('expanded'));
+                document.querySelectorAll('.card-text, .purchase-btn').forEach(el => el.classList.add('hidden'));
+
+                if (!alreadyExpanded) {
+                    this.classList.add('expanded');
+                    this.querySelector('.card-text').classList.remove('hidden');
+                    this.querySelector('.purchase-btn').classList.remove('hidden');
+                }
+            });
+        });
+
+        document.querySelectorAll('.purchase-btn').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const modal = new bootstrap.Modal(document.getElementById('purchaseModal'));
+                modal.show();
+                document.getElementById('purchaseForm').onsubmit = function (event) {
+                    event.preventDefault();
+                    const recipientName = document.getElementById('recipientName').value;
+                    const randomCode = 'GC-' + Math.floor(100000 + Math.random() * 900000);
+                    alert(`Gift Card purchased for ${recipientName}! Code: ${randomCode}`);
+                    modal.hide();
+                    document.getElementById('recipientName').value = '';
+                };
+            });
+        });
+    </script>
+</body>
+</html>

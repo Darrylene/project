@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brew & Blend Login</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      background-color: #f8f4ec;
+    }
+
+    form label {
+      color: #f8f4ec;
+    }
+
+    form input {
+      border: 2px solid #EAD8C0;
+      border-radius: 15px;
+    }
+
+    form input:focus {
+      outline: none;
+      border-color: #f8f4ec;
+      box-shadow: 0 0 10px #7c6246;
+    }
+
+    .bg-custom {
+      background-color: #8C785E;
+    }
+
+    .text-custom {
+      color: #f8f4ec;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+    }
+
+    .right-section {
+      position: relative;
+      width: 50%;
+      height: 100%;
+    }
+
+    .right-section img {
+      object-fit: cover;
+      width: 103%;
+      height: 100%;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .custom-btn {
+      background-color: #EAD8C0;
+      color: #5b4422;
+      border-radius: 15px;
+    }
+
+    .custom-btn:hover {
+      background-color: #d2c8a2;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-icons a img {
+      width: 32px;
+      height: 32px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; /* Full viewport height */
+      width: 100vw;  /* Full viewport width */
+    }
+
+    .row {
+      border-radius: 30px;
+      cursor: pointer;
+      width: 100%;
+      max-width: 1800px;
+      height: 90%;
+      max-height: 1800px;
+      margin: 0 auto;
+    }
+
+    .logo-container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .login-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50px;
+      padding: 30px;
+    }
+
+    .logo-title-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .login-title {
+      margin-top: 0;
+      color: white;
+    }
+
+    .forgot-password-link {
+      font-size: 1.1rem;
+      color: #f8f4ec;
+      margin-top: 8px;
+    }
+
+    .forgot-password-link:hover {
+      text-decoration: underline;
+    }
+
+    .login-form-container {
+      margin-top: 50px;
+    }
+
+    .loading-screen {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+      color: white;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    .coffee-loading-screen {
+      display: none;
+      position: fixed;
+      z-index: 1001;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .coffee-mug {
+      position: relative;
+      width: 80px;
+      height: 100px;
+      background-color: #8C785E;
+      border-radius: 0 0 40px 40px;
+      overflow: hidden;
+      animation: bounce 2s infinite;
+    }
+
+    .coffee-mug-handle {
+      position: absolute;
+      right: -30px;
+      top: 20px;
+      width: 30px;
+      height: 60px;
+      border: 5px solid #8C785E;
+      border-radius: 50%;
+    }
+
+    .coffee-mug-steam {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      width: 10px;
+      height: 40px;
+      background-color: #f8f4ec;
+      border-radius: 50%;
+      animation: steam 1s infinite;
+    }
+
+    @keyframes steam {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row shadow-lg rounded" style="background-color: #8C785E;">
+      <!-- Left Section: Login Form -->
+      <div class="col-md-6 p-4 login-form-container">
+        <div class="login-container">
+          <div class="logo-title-wrapper">
+            <img src="b&blogo.png" alt="Brew & Blend Logo" class="logo">
+            <h2 class="login-title mb-0">Sign In</h2>
+          </div>
+        </div>
+        <!-- Login Form -->
+        <form id="loginForm" method="POST" action="login.php">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+          </div>
+          <div class="mb-3 password-wrapper">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+            <span class="password-toggle" style="cursor: pointer;">👁️</span> <!-- Added an eye icon -->
+          </div>
+          <div class="d-flex justify-content-end">
+            <a href="forgotpass.html" class="text-decoration-none text-custom forgot-password-link">Forgot Password?</a>
+          </div>
+          <button type="submit" class="btn custom-btn w-100 mt-3">Login</button>
+        </form>
+        <div class="text-center mt-4">
+          <p class="mb-0">OR</p>
+          <p>Don't have an account? <a href="register1.html" class="text-custom">Register Here</a></p>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/demrosecarla.gangan.5"><img src="3fb89f53-fc20-4a4f-b340-1d9e948f46b4 (1).jpg" alt="Facebook"></a>
+            <a href="#"><img src="2fe4b12a-98b1-450c-ad23-a56d31012dbb.jpg" alt="Google"></a>
+            <a href="#"><img src="e0dd93e6-1481-4d0e-a47c-c3602d0b42bc.jpg" alt="Instagram"></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Section: Coffee Cup Image with Overlay -->
+      <div class="col-md-6 right-section d-flex align-items-center">
+        <img src="17ed7e90-b44f-4118-971c-1283a4b34673.jpg" class="d-block mx-auto" alt="Blueberry Belgian Waffles" style="width: 800px; height: 855px;">
+        <div class="overlay">
+          <div>
+            <h3>We haven’t met before right?</h3>
+            <p>Then we should have <br> coffee together!<br><br> We want to do a lot of stuff; we’re not in great shape. We’re a little depressed. Coffee solves all these problems in one delightful little cup.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="coffeeLoadingScreen" class="coffee-loading-screen" style="padding: 10px; border-radius: 50px;">
+    <div id="lottieCoffeeAnimation" style="width: 500px; height: 500px;"></div> <!-- Increased size -->
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.10.1/lottie.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize Lottie animation
+        const coffeeAnimation = lottie.loadAnimation({
+            container: document.getElementById('lottieCoffeeAnimation'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: false,
+            path: 'coffee-cup.json' // Path to your Lottie animation file
+        });
+
+        // Ensure the loading screen is hidden when the page loads
+        document.getElementById('coffeeLoadingScreen').style.display = 'none';
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Show coffee loading screen and start animation
+            document.getElementById('coffeeLoadingScreen').style.display = 'flex';
+            coffeeAnimation.play();
+
+            // Create a FormData object to send the form data
+            const formData = new FormData(this);
+
+            // Submit the form data
+            fetch('login.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('coffeeLoadingScreen').style.display = 'none';
+                coffeeAnimation.stop();
+                if (data.success) {
+                    // Redirect to the provided URL
+                    window.location.href = data.redirectUrl;
+                } else {
+                    Swal.fire('Error', data.message, 'error');
+                }
+            })
+            .catch(error => {
+                document.getElementById('coffeeLoadingScreen').style.display = 'none';
+                coffeeAnimation.stop();
+                Swal.fire('Error', 'An error occurred. Please try again.', 'error');
+            });
+        });
+    });
+  </script>
+</body>
+</html>

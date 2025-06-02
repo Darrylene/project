@@ -1,0 +1,345 @@
+/* Full-Screen Coffee Image */
+.coffee-image {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    display: block;
+}
+
+/* Solid Navbar */
+.navbar {
+    background-color: #543310;
+    color: #fff;
+    font-family: 'Agbalumo', sans-serif;
+}
+
+.navbar .navbar-brand {
+    color: #fff;
+    font-size: 1.8rem;
+}
+
+.navbar a {
+    color: #fff;
+}
+
+.navbar-nav .nav-link {
+    padding: 10px;
+}
+
+/* Sidebar */
+.sidebar {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    background-color: #8C785E;
+    padding-top: 50px;
+    transition: left 0.3s ease;
+    z-index: 1000;
+}
+
+.sidebar a {
+    display: block;
+    color: #fff2e1;
+    padding: 10px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.sidebar a:hover {
+    background-color: #543310;
+}
+
+.sidebar i {
+    margin-right: 10px;
+}
+
+/* Main Content */
+.content {
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+}
+
+/* Toggle Button */
+.toggle-btn {
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    background-color: transparent;
+    color: #fff2e1;
+    border: none;
+    font-size: 1.5rem;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* Close Button for Sidebar */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    color: #fff2e1;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Content */
+.carousel-item img {
+    max-width: 100%;
+    height: 80vh;
+    object-fit: cover;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif; /* Default font for the body */
+    background-color: #543310;
+    color: #fff2e1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+/* Best Sellers Section */
+.best-sellers-coffee {
+    background-color: #543310;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.best-sellers-coffee h2 {
+    font-family: 'Agbalumo', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #fff2e1;
+}
+
+.best-sellers-coffee .carousel-inner {
+    height: 400px;
+}
+
+/* Best Sellers Desserts Section */
+.best-sellers-desserts .carousel-item img {
+    display: block;
+    margin: 0 auto;
+    width: 220px;  /* Adjust this value to match other images */
+    height: 220px; /* Uniform height for consistency */
+    object-fit: cover;  /* Ensures the image doesn't get distorted */
+    border-radius: 15px; /* Optional: add rounded corners */
+}
+
+.carousel-caption {
+    position: relative;
+    text-align: center;
+    left: 10px;
+}
+.spacer {
+    height: 50px; 
+}
+
+.divider {
+    height: 2px;
+    background-color: #D2B48C;
+    margin: 50px 0;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.about-us {
+    background-color: #a79277;
+    padding: 60px 0;
+    text-align: center;
+    color: #fff2e1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center;
+    height: 400px;
+}
+
+.about-us h2 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-top: -30px;
+    align-self: flex-start; 
+}
+
+.about-us p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.3rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+    margin-top: 80px; 
+}
+
+.comment-section {
+    background-color: #a79277;
+    width: 100%; 
+    max-width: 1200px; 
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+}
+
+.comment-section h2 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.comment-section p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.feedback-section {
+    background-color: #a79277;
+    width: 100%; 
+    height: 600px;
+    max-width: 1200px; 
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+}
+
+.feedback-section h2 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.feedback-section p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 30px; 
+}
+
+.star-rating {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.star {
+    font-size: 40px;
+    color: rgb(75, 72, 72);
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.star:hover, 
+.star.selected {
+    color: yellow;
+}
+
+.star-rating {
+    margin-bottom: 30px;
+}
+
+.feedback-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    background-color: #8C785E;
+    color: #fff2e1;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.submit-btn:hover {
+    background-color: #8C785E;
+}
+.checkbox {
+    transform: scale(1.5); /* Adjust the number to make it bigger or smaller */
+}
+
+.comment-card {
+    background-color: #8C785E;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    color: #fff2e1;
+    height: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.comment-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.comment-card h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.comment-card p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.stars {
+    color: gold;
+    margin: 0.5rem 0;
+}
+
+.footer {
+    background-color: #8C785E;
+    padding: 1.5rem 0;
+    text-align: center;
+}
+
+.footer a {
+    color: #fff2e1;
+    text-decoration: none;
+    margin: 0.5rem;
+    display: inline-block;
+}
+
+.footer-logo img {
+    width: 100px;
+}
+
+.footer a i {
+    color: #543310; 
+    font-size: 2rem; 
+}
+
+.footer a i:hover {
+    color: #fff2e1; 
+}

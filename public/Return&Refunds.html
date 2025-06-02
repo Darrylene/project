@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return & Refund</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #543310;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .contact-box {
+            display: flex;
+            flex-direction: row;
+            background-color: #D1BB9E;
+            width: 80%;
+            max-width: 1200px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .left {
+            flex: 1;
+            background-color: #8C785E;
+            color: white;
+            padding: 40px;
+            border: 1px solid #543310;
+        }
+
+        .left h1 {
+            margin-top: 0;
+            font-size: 2em;
+        }
+
+        .left p {
+            margin-bottom: 20px;
+        }
+
+        .left .info {
+            margin-top: 30px;
+        }
+
+        .left .info div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .left .info div i {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .right {
+            flex: 1;
+            background-color: #8C785E;
+            padding: 40px;
+            color: white;
+        }
+
+        .right h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+
+        .right p {
+            margin-bottom: 20px;
+        }
+
+        .right form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .right form input,
+        .right form textarea,
+        .right form button {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .right form input,
+        .right form textarea {
+            background-color: #543310;
+            color: #8B4A3C;
+        }
+
+        .right form button {
+            background-color: #543310;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .right form button:hover {
+            background-color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="contact-box">
+            <div class="left">
+                <h1>Return & Refund</h1>
+                <p>We’re here to help you.</p>
+                <div class="info">
+                    <div><i>&#x1F4F2;</i> Brew & Blend Coffee Shop</div>
+                    <div><i>&#x1F4F7;</i> @brewandblendcoffeeshop</div>
+                    <div><i>&#x2709;&#xFE0F;</i> brewandblendcustomerservice@outlook.com</div>
+                    <div><i>&#x260E;&#xFE0F;</i> Tel: 046-554-2212<br>Globe: +63915-554-2231<br>Smart: +63946-225-4415</div>
+                </div>
+            </div>
+            <div class="right">
+                <h2>Let’s Talk!</h2>
+                <p>Feel free to drop us a line below:</p>
+                <form action="#" method="post">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="tel" name="phone" placeholder="Phone Number">
+                    <textarea name="message" rows="5" placeholder="Message" required></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
