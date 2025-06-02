@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Carousel } from "bootstrap";
-import './HomePage.css';
+import './Homepage.css';
 
 export default function Homepage() {
   useEffect(() => {
